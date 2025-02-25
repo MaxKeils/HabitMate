@@ -12,9 +12,10 @@ import javax.inject.Singleton
 class HabitRepositoryImpl @Inject constructor() : HabitRepository {
 
     private val _habits = MutableStateFlow(emptyList<Habit>())
+    private var counterId = 0
 
     override suspend fun addHabit(habit: Habit) {
-        _habits.update { it + habit }
+        _habits.update { it + habit.copy(id = counterId++)}
     }
 
     override suspend fun deleteHabit(habitId: Int) {
