@@ -50,18 +50,12 @@ class HabitListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recyclerView.adapter = adapter
+        setupRecyclerView()
+        observeViewModel()
+        setupClickListeners()
+    }
 
-        lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.habits
-                    .collect {
-                        adapter.submitList(it)
-                        Log.d("HabitsListFragment", "Collected: $it")
-                    }
-            }
-        }
-
+    private fun setupClickListeners() {
         binding.floatingActionButton.setOnClickListener {
             val testHabit = Habit(
                 id = (0..1000).random(),
@@ -74,8 +68,21 @@ class HabitListFragment : Fragment() {
         }
     }
 
+    private fun observeViewModel() {
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.habits
+                    .collect { adapter.submitList(it) }
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setupRecyclerView() {
+        binding.recyclerView.adapter = adapter
     }
 }
