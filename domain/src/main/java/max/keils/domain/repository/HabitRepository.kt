@@ -9,7 +9,7 @@ interface HabitRepository {
 
     suspend fun deleteHabit(habitId: Int)
 
-    suspend fun updateHabit(habit: Habit)
+    suspend fun updateHabit(newHabit: Habit)
 
     suspend fun getHabitById(habitId: Int): Habit?
 
