@@ -9,6 +9,9 @@ import javax.inject.Inject
 
 class HabitListAdapter @Inject constructor() :
     ListAdapter<Habit, HabitViewHolder>(DiffUtilHabit()) {
+
+    var onHabitItemClickListener: ((Habit) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = HabitItemBinding.inflate(inflater, parent, false)
@@ -17,6 +20,9 @@ class HabitListAdapter @Inject constructor() :
 
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
         val item = getItem(position)
+
+        holder.itemView.setOnClickListener { onHabitItemClickListener?.invoke(item) }
+
         holder.bind(item)
     }
 }
