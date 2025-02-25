@@ -1,11 +1,10 @@
 package max.keils.domain.usecase
 
-import kotlinx.coroutines.flow.Flow
-import max.keils.domain.model.Habit
 import max.keils.domain.repository.HabitRepository
+import javax.inject.Inject
 
-class GetHabitsUseCase(private val repository: HabitRepository) {
+class GetHabitsUseCase @Inject constructor(private val repository: HabitRepository) {
 
-    operator fun invoke(): Flow<List<Habit>> = repository.getHabits()
+    operator fun invoke() = repository.getHabits()
 
 }
