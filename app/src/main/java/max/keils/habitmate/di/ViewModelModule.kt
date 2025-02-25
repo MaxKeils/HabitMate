@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import max.keils.habitmate.presentation.habiteditor.HabitEditorFragment
 import max.keils.habitmate.presentation.habiteditor.HabitEditorViewModel
 import max.keils.habitmate.presentation.habitlist.HabitListViewModel
 
