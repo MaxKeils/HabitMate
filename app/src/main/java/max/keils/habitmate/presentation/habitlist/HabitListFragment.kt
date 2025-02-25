@@ -1,4 +1,4 @@
-package max.keils.habitmate.presentation.habitslist
+package max.keils.habitmate.presentation.habitlist
 
 import android.content.Context
 import android.os.Bundle
@@ -18,7 +18,7 @@ import max.keils.habitmate.databinding.FragmentHabitsListBinding
 import max.keils.habitmate.presentation.ViewModelFactory
 import javax.inject.Inject
 
-class HabitsListFragment : Fragment() {
+class HabitListFragment : Fragment() {
 
     private var _binding: FragmentHabitsListBinding? = null
     private val binding
@@ -27,8 +27,11 @@ class HabitsListFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
+    @Inject
+    lateinit var adapter: HabitListAdapter
+
     private val viewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[HabitsListViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[HabitListViewModel::class.java]
     }
 
     override fun onAttach(context: Context) {
@@ -47,10 +50,13 @@ class HabitsListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.recyclerView.adapter = adapter
+
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.habits
                     .collect {
+                        adapter.submitList(it)
                         Log.d("HabitsListFragment", "Collected: $it")
                     }
             }

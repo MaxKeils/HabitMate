@@ -1,4 +1,4 @@
-package max.keils.habitmate.presentation.habitslist
+package max.keils.habitmate.presentation.habitlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,7 +8,7 @@ import max.keils.domain.usecase.AddHabitUseCase
 import max.keils.domain.usecase.GetHabitsUseCase
 import javax.inject.Inject
 
-class HabitsListViewModel @Inject constructor(
+class HabitListViewModel @Inject constructor(
     getHabitsUseCase: GetHabitsUseCase,
     private val addHabitUseCase: AddHabitUseCase
 ) : ViewModel() {
