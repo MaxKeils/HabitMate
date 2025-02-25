@@ -1,59 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_margin="5dp"
+    app:cardCornerRadius="12dp"
+    app:contentPadding="10dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/light_gray">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        app:cardMaxElevation="10dp"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="10dp"
-        app:cardBackgroundColor="@color/white"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cb_is_habit_completed_today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:buttonTint="@color/checkbox_selector"
+            app:useMaterialThemeColors="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <CheckBox
-                android:id="@+id/cb_is_habit_completed_today"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+        <TextView
+            android:id="@+id/tv_habit_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/example_habit_name"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cb_is_habit_completed_today"/>
 
-            <TextView
-                android:id="@+id/tv_habit_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:contentDescription=""
-                android:text="@string/example_habit_name"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginHorizontal="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/cb_is_habit_completed_today"/>
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/example_description_habit"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_habit_name"
+            app:layout_constraintEnd_toEndOf="@id/tv_habit_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_habit_name"/>
 
-            <TextView
-                android:id="@+id/tv_description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/example_description_habit"
-                android:textColor="@color/grey"
-                app:layout_constraintStart_toStartOf="@id/tv_habit_name"
-                app:layout_constraintEnd_toEndOf="@id/tv_habit_name"
-                app:layout_constraintTop_toBottomOf="@id/tv_habit_name"
-                />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-</FrameLayout>
+</com.google.android.material.card.MaterialCardView>
