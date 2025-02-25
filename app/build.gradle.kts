@@ -44,6 +44,8 @@ dependencies {
     implementation(project(path=":domain"))
     implementation(project(path=":data"))
 
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)
 
