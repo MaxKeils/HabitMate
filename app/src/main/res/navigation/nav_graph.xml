@@ -3,12 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/habitsListFragment">
+    app:startDestination="@id/habitListFragment">
 
     <fragment
-        android:id="@+id/habitsListFragment"
+        android:id="@+id/habitListFragment"
         android:name="max.keils.habitmate.presentation.habitlist.HabitListFragment"
         android:label="fragment_habits_list"
-        tools:layout="@layout/fragment_habits_list" />
+        tools:layout="@layout/fragment_habit_list" >
+        <action
+            android:id="@+id/action_habitListFragment_to_addHabitFragment"
+            app:destination="@id/addHabitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addHabitFragment"
+        android:name="max.keils.habitmate.presentation.habiteditor.HabitEditorFragment"
+        android:label="fragment_add_habit"
+        tools:layout="@layout/fragment_editor_habit" >
+        <argument
+            android:name="habitId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

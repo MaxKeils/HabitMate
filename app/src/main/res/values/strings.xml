@@ -5,4 +5,7 @@
     <string name="content_description_add_new_habit">Add new habit</string>
     <string name="example_habit_name">Example Habit name</string>
     <string name="example_description_habit">Example description habit</string>
+    <string name="hint_enter_habit_name">Enter habit name</string>
+    <string name="hint_enter_description">Enter Description</string>
+    <string name="save_habit">Save habit</string>
 </resources>
