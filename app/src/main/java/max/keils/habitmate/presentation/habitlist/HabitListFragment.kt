@@ -2,7 +2,6 @@ package max.keils.habitmate.presentation.habitlist
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +10,17 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
-import max.keils.domain.model.Habit
 import max.keils.habitmate.HabitMateApp
-import max.keils.habitmate.databinding.FragmentHabitsListBinding
+import max.keils.habitmate.databinding.FragmentHabitListBinding
 import max.keils.habitmate.presentation.ViewModelFactory
+import max.keils.habitmate.presentation.habiteditor.HabitEditorFragment
 import javax.inject.Inject
 
 class HabitListFragment : Fragment() {
 
-    private var _binding: FragmentHabitsListBinding? = null
+    private var _binding: FragmentHabitListBinding? = null
     private val binding
         get() = _binding ?: throw RuntimeException("_binding is null")
 
@@ -43,7 +43,7 @@ class HabitListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHabitsListBinding.inflate(inflater, container, false)
+        _binding = FragmentHabitListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -56,15 +56,20 @@ class HabitListFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
-        binding.floatingActionButton.setOnClickListener {
-            val testHabit = Habit(
-                id = (0..1000).random(),
-                name = "Test",
-                description = "123",
-                frequency = 1,
-                isCompletedToday = true
-            )
-            viewModel.addHabit(testHabit)
+
+        with(adapter) {
+            onHabitItemClickListener = { habit ->
+                HabitListFragmentDirections.actionHabitListFragmentToAddHabitFragment(habit.id)
+                    .also { findNavController().navigate(it) }
+            }
+        }
+
+        with(binding) {
+            floatingActionButton.setOnClickListener {
+                HabitListFragmentDirections.actionHabitListFragmentToAddHabitFragment(
+                    HabitEditorFragment.HABIT_ID_IS_ABSENT
+                ).also { findNavController().navigate(it) }
+            }
         }
     }
 

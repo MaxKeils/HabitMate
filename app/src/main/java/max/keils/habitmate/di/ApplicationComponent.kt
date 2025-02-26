@@ -1,6 +1,7 @@
 package max.keils.habitmate.di
 
 import dagger.Component
+import max.keils.habitmate.presentation.habiteditor.HabitEditorFragment
 import max.keils.habitmate.presentation.habitlist.HabitListFragment
 import javax.inject.Singleton
 
@@ -9,5 +10,7 @@ import javax.inject.Singleton
 interface ApplicationComponent {
 
     fun inject(fragment: HabitListFragment)
+
+    fun inject(fragment: HabitEditorFragment)
 
 }
