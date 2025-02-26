@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="backgroundColor">#F7FAFC</color>
+    <color name="colorOnBackground">#0D141C</color>
+
+    <color name="colorPrimary">#E8EDF2</color>
+
+    <color name="hint_text_color">#4F7396</color>
+
+
     <color name="light_gray">#F5F5F5</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#212121</color>

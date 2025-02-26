@@ -1,54 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    app:cardCornerRadius="12dp"
-    app:contentPadding="10dp"
-    app:cardElevation="4dp"
-    app:cardBackgroundColor="@color/light_gray">
+    android:paddingHorizontal="8dp"
+    android:paddingBottom="8dp"
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:background="@drawable/bg_rounded"
+        android:contentDescription="@string/content_description_habit_image"
+        android:padding="8dp"
+        android:src="@drawable/ic_placeholder_icon_habit"
+        app:layout_constraintBottom_toBottomOf="@id/rb_state"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/rb_state" />
 
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/cb_is_habit_completed_today"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:buttonTint="@color/checkbox_selector"
-            app:useMaterialThemeColors="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tv_habit_name"
+        style="@style/TextNormal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/manrope_regular"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="@id/iv_icon"
+        app:layout_constraintEnd_toStartOf="@id/rb_state"
+        app:layout_constraintStart_toEndOf="@id/iv_icon"
+        app:layout_constraintTop_toTopOf="@id/iv_icon"
+        tools:text="Read a book" />
 
-        <TextView
-            android:id="@+id/tv_habit_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/example_habit_name"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/cb_is_habit_completed_today"/>
+    <TextView
+        android:id="@+id/tv_description"
+        style="@style/TextSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/manrope_regular"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="@id/iv_icon"
+        app:layout_constraintEnd_toStartOf="@id/rb_state"
+        app:layout_constraintStart_toEndOf="@id/iv_icon"
+        app:layout_constraintTop_toBottomOf="@id/tv_habit_name"
+        tools:text="Read for 10 minutes every day" />
 
-        <TextView
-            android:id="@+id/tv_description"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/example_description_habit"
-            android:textColor="@color/gray"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@id/tv_habit_name"
-            app:layout_constraintEnd_toEndOf="@id/tv_habit_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_habit_name"/>
+    <com.google.android.material.radiobutton.MaterialRadioButton
+        android:id="@+id/rb_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

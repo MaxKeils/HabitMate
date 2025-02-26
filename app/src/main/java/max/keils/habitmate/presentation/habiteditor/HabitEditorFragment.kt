@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import max.keils.habitmate.HabitMateApp
+import max.keils.habitmate.R
 import max.keils.habitmate.databinding.FragmentEditorHabitBinding
 import max.keils.habitmate.presentation.ViewModelFactory
 import javax.inject.Inject
@@ -49,7 +50,10 @@ class HabitEditorFragment : Fragment() {
 
         if (isScreenModeIsEdit()) {
             viewModel.loadHabitById(habitId)
-        }
+            binding.logoScreen.text = getString(R.string.edit_habit)
+        } else
+            binding.logoScreen.text = getString(R.string.new_habit)
+
 
         setupClickListeners()
         observeViewModel()
@@ -59,8 +63,10 @@ class HabitEditorFragment : Fragment() {
         with(viewModel) {
             shouldCloseScreen.observe(viewLifecycleOwner) { findNavController().popBackStack() }
             habitItem.observe(viewLifecycleOwner) {
-                binding.etHabitName.setText(it.name)
-                binding.etHabitDescription.setText(it.description)
+                with(binding) {
+                    tiEtNameHabit.setText(it.name)
+                    tiEtDescriptionHabit.setText(it.description)
+                }
             }
         }
     }
@@ -68,8 +74,8 @@ class HabitEditorFragment : Fragment() {
     private fun setupClickListeners() {
         with(binding) {
             btnSave.setOnClickListener {
-                val name = etHabitName.text.toString()
-                val description =  etHabitDescription.text.toString()
+                val name = tiEtNameHabit.text.toString()
+                val description =  tiEtDescriptionHabit.text.toString()
                 if (isScreenModeIsEdit())
                     viewModel.editHabit(name, description)
                 else

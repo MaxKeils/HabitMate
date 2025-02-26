@@ -2,6 +2,7 @@ package max.keils.habitmate.presentation.habitlist
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import max.keils.habitmate.HabitMateApp
 import max.keils.habitmate.databinding.FragmentHabitListBinding
@@ -65,7 +67,7 @@ class HabitListFragment : Fragment() {
         }
 
         with(binding) {
-            floatingActionButton.setOnClickListener {
+            btnAddHabit.setOnClickListener {
                 HabitListFragmentDirections.actionHabitListFragmentToAddHabitFragment(
                     HabitEditorFragment.HABIT_ID_IS_ABSENT
                 ).also { findNavController().navigate(it) }

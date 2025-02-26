@@ -11,7 +11,7 @@ class HabitViewHolder(private val binding: HabitItemBinding) :
             with(binding) {
                 tvHabitName.text = item.name
                 tvDescription.text = item.description
-                cbIsHabitCompletedToday.isSelected = item.isCompletedToday
+                rbState.isSelected = item.isCompletedToday
             }
         }
 }
