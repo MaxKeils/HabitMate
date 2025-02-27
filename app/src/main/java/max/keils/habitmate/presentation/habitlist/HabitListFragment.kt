@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 import max.keils.habitmate.HabitMateApp
 import max.keils.habitmate.databinding.FragmentHabitListBinding
 import max.keils.habitmate.presentation.ViewModelFactory
-import max.keils.habitmate.presentation.habiteditor.HabitEditorFragment
 import javax.inject.Inject
 
 class HabitListFragment : Fragment() {
@@ -58,17 +57,16 @@ class HabitListFragment : Fragment() {
     private fun setupClickListeners() {
 
         with(adapter) {
-            onHabitItemClickListener = { habit ->
-                HabitListFragmentDirections.actionHabitListFragmentToAddHabitFragment(habit.id)
+            onHabitItemClickListener = {habit ->
+                HabitListFragmentDirections.actionHabitListFragmentToEditHabitFragment(habit.id)
                     .also { findNavController().navigate(it) }
             }
         }
 
         with(binding) {
             btnAddHabit.setOnClickListener {
-                HabitListFragmentDirections.actionHabitListFragmentToAddHabitFragment(
-                    HabitEditorFragment.HABIT_ID_IS_ABSENT
-                ).also { findNavController().navigate(it) }
+                HabitListFragmentDirections.actionHabitListFragmentToAddHabitFragment()
+                    .also { findNavController().navigate(it) }
             }
         }
     }

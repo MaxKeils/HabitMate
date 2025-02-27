@@ -7,7 +7,7 @@
     <string name="example_description_habit">Example description habit</string>
     <string name="hint_enter_habit_name">Enter habit name</string>
     <string name="hint_description">Read for 30 minutes in the morning</string>
-    <string name="save_habit">Save habit</string>
+    <string name="save">Save</string>
     <string name="logo_habits_screen">Habits</string>
     <string name="content_description_settings">Settings</string>
     <string name="add_new_habit">Add new habit</string>
@@ -23,9 +23,13 @@
     <string name="abbreviation_monday">Mon</string>
     <string name="abbreviation_tuesday">Tues</string>
     <string name="abbreviation_wednesday">Wed</string>
-    <string name="abbreviation_thirsday">Thirs</string>
+    <string name="abbreviation_thursday">Thurs</string>
     <string name="abbreviation_friday">Fri</string>
     <string name="abbreviation_saturday">Sat</string>
     <string name="abbreviation_sunday">Sun</string>
     <string name="content_description_habit_image">Habit image</string>
+    <string name="warning">Warning</string>
+    <string name="dialog_warning_data_will_be_lost">Are you sure you want to exit? All unsaved data will be lost.</string>
+    <string name="exit">Exit</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -8,17 +8,27 @@
     <fragment
         android:id="@+id/habitListFragment"
         android:name="max.keils.habitmate.presentation.habitlist.HabitListFragment"
-        android:label="fragment_habits_list"
-        tools:layout="@layout/fragment_habit_list" >
+        tools:layout="@layout/fragment_habit_list">
         <action
             android:id="@+id/action_habitListFragment_to_addHabitFragment"
             app:destination="@id/addHabitFragment" />
+        <action
+            android:id="@+id/action_habitListFragment_to_editHabitFragment"
+            app:destination="@id/editHabitFragment" />
     </fragment>
     <fragment
         android:id="@+id/addHabitFragment"
-        android:name="max.keils.habitmate.presentation.habiteditor.HabitEditorFragment"
-        android:label="fragment_add_habit"
-        tools:layout="@layout/fragment_editor_habit" >
+        android:name="max.keils.habitmate.presentation.addhabit.AddHabitFragment"
+        tools:layout="@layout/fragment_add_habit">
+        <argument
+            android:name="habitId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/editHabitFragment"
+        android:name="max.keils.habitmate.presentation.detailshabit.HabitDetailFragment"
+        tools:layout="@layout/fragment_habit_detail" >
         <argument
             android:name="habitId"
             app:argType="integer" />

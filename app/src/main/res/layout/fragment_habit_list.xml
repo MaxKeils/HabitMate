@@ -4,29 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundColor"
+    android:background="?attr/colorSurface"
     tools:context=".presentation.habitlist.HabitListFragment">
-
-    <TextView
-        android:id="@+id/logo"
-        style="@style/AppTitleScreenText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/logo_habits_screen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/content_description_settings"
-        android:padding="16dp"
-        android:src="@drawable/ic_settings"
-        app:layout_constraintBottom_toTopOf="@id/recycler_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -36,7 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintTop_toTopOf="parent"
         tools:itemCount="3"
         tools:listitem="@layout/habit_item" />
 
@@ -48,10 +27,11 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/manrope_bold"
         android:text="@string/add_new_habit"
-        android:textColor="?attr/colorOnBackground"
+        android:textColor="?attr/colorOnSurface"
+        android:backgroundTint="@color/colorSurfaceContainerLow"
         android:textSize="14sp"
         app:icon="@drawable/ic_add"
-        app:iconTint="?attr/colorOnBackground"
+        app:iconTint="?attr/colorOnSurface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

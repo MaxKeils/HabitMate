@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import max.keils.habitmate.presentation.habiteditor.HabitEditorViewModel
+import max.keils.habitmate.presentation.addhabit.AddHabitViewModel
 import max.keils.habitmate.presentation.habitlist.HabitListViewModel
 
 @Module
@@ -15,8 +15,8 @@ interface ViewModelModule {
     fun bindHabitsListViewModel(impl: HabitListViewModel): ViewModel
 
     @IntoMap
-    @ViewModelKey(HabitEditorViewModel::class)
+    @ViewModelKey(AddHabitViewModel::class)
     @Binds
-    fun bindHabitEditorViewModel(impl: HabitEditorViewModel): ViewModel
+    fun bindHabitEditorViewModel(impl: AddHabitViewModel): ViewModel
 
 }

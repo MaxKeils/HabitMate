@@ -1,20 +1,22 @@
-package max.keils.habitmate.presentation.habiteditor
+package max.keils.habitmate.presentation.addhabit
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import max.keils.domain.model.Habit
 import max.keils.domain.usecase.AddHabitUseCase
 import max.keils.domain.usecase.GetHabitByIdUseCase
+import max.keils.domain.usecase.GetHabitsUseCase
 import max.keils.domain.usecase.UpdateHabitUseCase
 import javax.inject.Inject
 
-class HabitEditorViewModel @Inject constructor(
+class AddHabitViewModel @Inject constructor(
     private val addHabitUseCase: AddHabitUseCase,
     private val updateHabitUseCase: UpdateHabitUseCase,
-    private val getHabitByIdUseCase: GetHabitByIdUseCase
+    private val getHabitByIdUseCase: GetHabitByIdUseCase,
 ) : ViewModel() {
 
     private val _shouldCloseScreen = MutableLiveData<Unit>()
@@ -39,7 +41,7 @@ class HabitEditorViewModel @Inject constructor(
         }
     }
 
-    fun editHabit(name: String, description: String) {
+    fun updateHabit(name: String, description: String) {
         habitItem.value?.let {
             viewModelScope.launch {
                 val item = it.copy(name = name, description = description)

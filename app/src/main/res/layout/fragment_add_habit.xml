@@ -4,30 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundColor"
-    tools:context=".presentation.habiteditor.HabitEditorFragment">
+    android:background="?attr/colorSurface"
+    tools:context=".presentation.addhabit.AddHabitFragment">
 
-    <TextView
-        android:id="@+id/logo_screen"
-        style="@style/AppTitleScreenText"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/new_habit" />
-
-    <ImageButton
-        android:id="@+id/btn_exit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/content_description_exit_to_habit_list_screen"
-        android:padding="16dp"
-        android:src="@drawable/ic_exit"
-        app:layout_constraintBottom_toBottomOf="@id/logo_screen"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/logo_screen" />
+        app:menu="@menu/menu_add_habit"
+        app:navigationIcon="@drawable/ic_exit"
+        app:subtitleCentered="true"
+        app:title="@string/new_habit"
+        app:titleCentered="true"
+        app:titleTextAppearance="@style/AppTitleScreenText" />
 
     <TextView
         android:id="@+id/tv_habit_name"
@@ -36,7 +29,7 @@
         android:layout_height="wrap_content"
         android:text="@string/name"
         app:layout_constraintStart_toStartOf="@id/til_name_habit"
-        app:layout_constraintTop_toBottomOf="@id/logo_screen" />
+        app:layout_constraintTop_toBottomOf="@id/tool_bar" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_name_habit"
@@ -131,12 +124,12 @@
         app:layout_constraintTop_toBottomOf="@id/rc_view" />
 
     <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group_work_days"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/til_description_habit"
-        app:layout_constraintStart_toStartOf="@id/tv_days"
         app:layout_constraintTop_toBottomOf="@id/tv_days"
-        app:singleLine="false"
+        app:layout_constraintStart_toStartOf="@id/tv_days"
+        app:layout_constraintEnd_toEndOf="@id/til_description_habit"
         app:singleSelection="false">
 
         <com.google.android.material.chip.Chip
@@ -153,11 +146,20 @@
 
         <com.google.android.material.chip.Chip
             style="@style/DayChip"
-            android:text="@string/abbreviation_thirsday" />
+            android:text="@string/abbreviation_thursday" />
 
         <com.google.android.material.chip.Chip
             style="@style/DayChip"
             android:text="@string/abbreviation_friday" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/chip_group_work_days"
+        app:layout_constraintStart_toStartOf="@id/chip_group_work_days"
+        app:layout_constraintEnd_toEndOf="@id/chip_group_work_days"
+        app:singleSelection="false">
 
         <com.google.android.material.chip.Chip
             style="@style/DayChip"
@@ -166,20 +168,6 @@
         <com.google.android.material.chip.Chip
             style="@style/DayChip"
             android:text="@string/abbreviation_sunday" />
-
     </com.google.android.material.chip.ChipGroup>
-
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/save_habit"
-        android:textSize="16sp"
-        android:textColor="?attr/colorOnBackground"
-        android:fontFamily="@font/manrope_bold"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
