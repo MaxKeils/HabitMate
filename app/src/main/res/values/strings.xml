@@ -32,4 +32,6 @@
     <string name="dialog_warning_data_will_be_lost">Are you sure you want to exit? All unsaved data will be lost.</string>
     <string name="exit">Exit</string>
     <string name="cancel">Cancel</string>
+    <string name="hint_habit_name">Read a book</string>
+    <string name="mark_habit_as_done">Mark as done</string>
 </resources>

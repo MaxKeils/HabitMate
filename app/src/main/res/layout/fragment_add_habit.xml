@@ -127,9 +127,9 @@
         android:id="@+id/chip_group_work_days"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_days"
-        app:layout_constraintStart_toStartOf="@id/tv_days"
         app:layout_constraintEnd_toEndOf="@id/til_description_habit"
+        app:layout_constraintStart_toStartOf="@id/tv_days"
+        app:layout_constraintTop_toBottomOf="@id/tv_days"
         app:singleSelection="false">
 
         <com.google.android.material.chip.Chip
@@ -156,9 +156,9 @@
     <com.google.android.material.chip.ChipGroup
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/chip_group_work_days"
-        app:layout_constraintStart_toStartOf="@id/chip_group_work_days"
         app:layout_constraintEnd_toEndOf="@id/chip_group_work_days"
+        app:layout_constraintStart_toStartOf="@id/chip_group_work_days"
+        app:layout_constraintTop_toBottomOf="@id/chip_group_work_days"
         app:singleSelection="false">
 
         <com.google.android.material.chip.Chip

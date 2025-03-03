@@ -27,11 +27,14 @@
     </fragment>
     <fragment
         android:id="@+id/editHabitFragment"
-        android:name="max.keils.habitmate.presentation.detailshabit.HabitDetailFragment"
-        tools:layout="@layout/fragment_habit_detail" >
+        android:name="max.keils.habitmate.presentation.detailshabit.HabitDetailsFragment"
+        tools:layout="@layout/fragment_habit_details" >
         <argument
             android:name="habitId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_editHabitFragment_to_addHabitFragment"
+            app:destination="@id/addHabitFragment" />
     </fragment>
 
 </navigation>

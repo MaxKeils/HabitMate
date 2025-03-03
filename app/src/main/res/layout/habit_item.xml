@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toStartOf="@id/rb_state"
         app:layout_constraintStart_toEndOf="@id/iv_icon"
         app:layout_constraintTop_toTopOf="@id/iv_icon"
-        tools:text="Read a book" />
+        tools:text="@string/hint_habit_name" />
 
     <TextView
         android:id="@+id/tv_description"
@@ -49,7 +49,7 @@
         app:layout_constraintEnd_toStartOf="@id/rb_state"
         app:layout_constraintStart_toEndOf="@id/iv_icon"
         app:layout_constraintTop_toBottomOf="@id/tv_habit_name"
-        tools:text="Read for 10 minutes every day" />
+        tools:text="@string/hint_description" />
 
     <com.google.android.material.radiobutton.MaterialRadioButton
         android:id="@+id/rb_state"

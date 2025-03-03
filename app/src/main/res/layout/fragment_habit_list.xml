@@ -7,6 +7,20 @@
     android:background="?attr/colorSurface"
     tools:context=".presentation.habitlist.HabitListFragment">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_habit_list"
+        app:subtitleCentered="true"
+        app:title="@string/logo_habits_screen"
+        app:titleCentered="true"
+        app:titleTextAppearance="@style/AppTitleScreenText" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
@@ -15,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tool_bar"
         tools:itemCount="3"
         tools:listitem="@layout/habit_item" />
 
@@ -25,10 +39,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/colorSurfaceContainerLow"
         android:fontFamily="@font/manrope_bold"
         android:text="@string/add_new_habit"
         android:textColor="?attr/colorOnSurface"
-        android:backgroundTint="@color/colorSurfaceContainerLow"
         android:textSize="14sp"
         app:icon="@drawable/ic_add"
         app:iconTint="?attr/colorOnSurface"
