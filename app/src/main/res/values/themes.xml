@@ -14,6 +14,11 @@
 
     </style>
 
+    <style name="ThemeOverlay.MyTimePicker" parent="ThemeOverlay.Material3.MaterialTimePicker">
+        <item name="colorPrimary">?attr/colorSurfaceVariant</item>
+        
+    </style>
+
 
     <style name="Theme.HabitMate" parent="Base.Theme.HabitMate" />
 

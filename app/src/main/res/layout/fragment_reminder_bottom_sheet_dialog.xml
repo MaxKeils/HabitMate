@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_add_reminder"
+        style="@style/TextSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_reminder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_select_date"
+        style="@style/TextNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/when_do_you_want_to_do_this"
+        app:layout_constraintStart_toStartOf="@id/tv_add_reminder"
+        app:layout_constraintTop_toBottomOf="@id/tv_add_reminder" />
+
+
+    <HorizontalScrollView
+        android:id="@+id/sc_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        app:layout_constraintStart_toStartOf="@id/tv_select_date"
+        app:layout_constraintTop_toBottomOf="@id/tv_select_date">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                style="@style/DayChip"
+                android:layout_width="wrap_content"
+                android:tag="1"
+                android:text="@string/abbreviation_monday" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/DayChip"
+                android:tag="2"
+                android:text="@string/abbreviation_tuesday" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/DayChip"
+                android:tag="3"
+                android:text="@string/abbreviation_wednesday" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/DayChip"
+                android:tag="4"
+                android:text="@string/abbreviation_thursday" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/DayChip"
+                android:tag="5"
+                android:text="@string/abbreviation_friday" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/DayChip"
+                android:tag="6"
+                android:text="@string/abbreviation_saturday" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/DayChip"
+                android:tag="7"
+                android:text="@string/abbreviation_sunday" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/tv_choose_time"
+        style="@style/TextNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:paddingBottom="0dp"
+        android:text="@string/choose_a_time_for_notification"
+        app:layout_constraintStart_toStartOf="@id/sc_view"
+        app:layout_constraintTop_toBottomOf="@id/sc_view" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_select_time"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/select"
+        android:textColor="?attr/colorOnBackground"
+        app:layout_constraintBottom_toBottomOf="@id/tv_selected_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_choose_time" />
+
+    <TextView
+        android:id="@+id/tv_selected_time"
+        style="@style/TextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="0dp"
+        android:text="@string/selected_time"
+        app:layout_constraintStart_toStartOf="@id/tv_choose_time"
+        app:layout_constraintTop_toBottomOf="@id/tv_choose_time" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/TextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:paddingTop="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_selected_time"
+        app:layout_constraintStart_toEndOf="@id/tv_selected_time"
+        app:layout_constraintTop_toTopOf="@id/tv_selected_time"
+        tools:text="10:00" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save_reminder"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:text="@string/save_reminder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_selected_time" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

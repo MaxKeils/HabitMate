@@ -22,152 +22,116 @@
         app:titleCentered="true"
         app:titleTextAppearance="@style/AppTitleScreenText" />
 
-    <TextView
-        android:id="@+id/tv_habit_name"
-        style="@style/TextNormal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name"
-        app:layout_constraintStart_toStartOf="@id/til_name_habit"
-        app:layout_constraintTop_toBottomOf="@id/tool_bar" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_name_habit"
-        style="@style/TextInputLayoutStyle"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        app:endIconMode="clear_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_habit_name">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tool_bar">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ti_et_name_habit"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/manrope_medium"
-            android:hint="@string/hint_read_a_book"
-            android:inputType="text"
-            android:textColorHint="?attr/colorOnSurfaceVariant" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/tv_description"
-        style="@style/TextNormal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/description"
-        app:layout_constraintStart_toStartOf="@id/til_name_habit"
-        app:layout_constraintTop_toBottomOf="@id/til_name_habit" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_description_habit"
-        style="@style/TextInputLayoutStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="@id/til_name_habit"
-        app:layout_constraintStart_toStartOf="@id/til_name_habit"
-        app:layout_constraintTop_toBottomOf="@id/tv_description">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ti_et_description_habit"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/manrope_medium"
-            android:gravity="start|top"
-            android:hint="@string/hint_description"
-            android:inputType="textMultiLine"
-            android:maxLength="125"
-            android:minLines="3"
-            android:textColorHint="?attr/colorOnSurfaceVariant" />
+            android:paddingBottom="16dp">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/tv_habit_name"
+                style="@style/TextNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:text="@string/name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_reminders"
-        style="@style/TextSubtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/reminders"
-        app:layout_constraintStart_toStartOf="@id/til_description_habit"
-        app:layout_constraintTop_toBottomOf="@id/til_description_habit" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_name_habit"
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                app:endIconMode="clear_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_habit_name">
 
-    <TextView
-        android:id="@+id/tv_add_reminder"
-        style="@style/TextNormal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="@string/add_reminder"
-        app:layout_constraintBottom_toBottomOf="@id/tv_reminders"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_reminders" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ti_et_name_habit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/manrope_medium"
+                    android:hint="@string/hint_read_a_book"
+                    android:inputType="text"
+                    android:textColorHint="?attr/colorOnSurfaceVariant" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        app:layout_constraintStart_toStartOf="@id/tv_reminders"
-        app:layout_constraintTop_toBottomOf="@id/tv_reminders"
-        tools:itemCount="3" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/tv_days"
-        style="@style/TextSubtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/days_of_the_week"
-        app:layout_constraintStart_toStartOf="@id/rc_view"
-        app:layout_constraintTop_toBottomOf="@id/rc_view" />
+            <TextView
+                android:id="@+id/tv_description"
+                style="@style/TextNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:text="@string/description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_name_habit" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chip_group_work_days"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/til_description_habit"
-        app:layout_constraintStart_toStartOf="@id/tv_days"
-        app:layout_constraintTop_toBottomOf="@id/tv_days"
-        app:singleSelection="false">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_description_habit"
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                app:endIconMode="clear_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_description">
 
-        <com.google.android.material.chip.Chip
-            style="@style/DayChip"
-            android:text="@string/abbreviation_monday" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ti_et_description_habit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/manrope_medium"
+                    android:gravity="start|top"
+                    android:hint="@string/hint_description"
+                    android:inputType="textMultiLine"
+                    android:maxLength="125"
+                    android:minLines="3"
+                    android:textColorHint="?attr/colorOnSurfaceVariant" />
 
-        <com.google.android.material.chip.Chip
-            style="@style/DayChip"
-            android:text="@string/abbreviation_tuesday" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.chip.Chip
-            style="@style/DayChip"
-            android:text="@string/abbreviation_wednesday" />
+            <TextView
+                android:id="@+id/tv_reminders"
+                style="@style/TextSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:text="@string/reminders"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_description_habit" />
 
-        <com.google.android.material.chip.Chip
-            style="@style/DayChip"
-            android:text="@string/abbreviation_thursday" />
+            <TextView
+                android:id="@+id/tv_add_reminder"
+                style="@style/TextNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@string/add_reminder"
+                app:layout_constraintBottom_toBottomOf="@id/tv_reminders"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_reminders" />
 
-        <com.google.android.material.chip.Chip
-            style="@style/DayChip"
-            android:text="@string/abbreviation_friday" />
-    </com.google.android.material.chip.ChipGroup>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:padding="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_reminders"
+                tools:itemCount="3"
+                tools:listitem="@layout/reminder_item" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.chip.ChipGroup
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/chip_group_work_days"
-        app:layout_constraintStart_toStartOf="@id/chip_group_work_days"
-        app:layout_constraintTop_toBottomOf="@id/chip_group_work_days"
-        app:singleSelection="false">
-
-        <com.google.android.material.chip.Chip
-            style="@style/DayChip"
-            android:text="@string/abbreviation_saturday" />
-
-        <com.google.android.material.chip.Chip
-            style="@style/DayChip"
-            android:text="@string/abbreviation_sunday" />
-    </com.google.android.material.chip.ChipGroup>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

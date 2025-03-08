@@ -2,6 +2,7 @@ package max.keils.habitmate.presentation.addhabit
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -15,8 +16,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -36,9 +37,10 @@ class AddHabitFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[AddHabitViewModel::class.java]
-    }
+    @Inject
+    lateinit var adapter: ReminderListAdapter
+
+    private val viewModel by viewModels<AddHabitViewModel> { viewModelFactory }
 
     private val args: AddHabitFragmentArgs by navArgs()
     private val habitId by lazy { args.habitId }
@@ -65,8 +67,13 @@ class AddHabitFragment : Fragment() {
         }
 
         observeViewModel()
+        setupRecyclerView()
         setupNavigation()
         setupClickListeners()
+    }
+
+    private fun setupRecyclerView() {
+        binding.rcView.adapter = adapter
     }
 
     private fun observeViewModel() {
@@ -78,24 +85,29 @@ class AddHabitFragment : Fragment() {
                     tiEtDescriptionHabit.setText(it.description)
                 }
             }
+            reminders.observe(viewLifecycleOwner) {
+                Log.d("ReminderListAdapter", "Observe: $it")
+                adapter.submitList(it)
+            }
         }
     }
 
     private fun setupClickListeners() {
-        binding.toolBar.setNavigationOnClickListener { showExitDialog() }
-
-        requireActivity().onBackPressedDispatcher.addCallback {
-            showExitDialog()
+        with(binding) {
+            toolBar.setNavigationOnClickListener { showExitDialog() }
+            tvAddReminder.setOnClickListener {
+                ReminderBottomSheetDialogFragment()
+                    .show(childFragmentManager, ReminderBottomSheetDialogFragment.TAG)
+            }
         }
 
-
+        requireActivity().onBackPressedDispatcher.addCallback { showExitDialog() }
     }
 
     private fun setupNavigation() {
         setupMenu()
 
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolBar)
-
     }
 
     private fun setupMenu() {
@@ -122,10 +134,27 @@ class AddHabitFragment : Fragment() {
     private fun clickListenerOnSaveButton() {
         val name = binding.tiEtNameHabit.text.toString()
         val description = binding.tiEtDescriptionHabit.text.toString()
-        if (isScreenModeIsAdd())
-            viewModel.addHabit(name, description)
-        else
-            viewModel.updateHabit(name, description)
+
+        if (isScreenModeIsAdd()) {
+            Habit(
+                name = name,
+                description = description,
+                frequency = 1,
+                isCompletedToday = false
+            ).also {
+                viewModel.addHabit(it)
+            }
+
+        } else {
+            viewModel.habitItem.value?.let {
+                viewModel.updateHabit(
+                    it.copy(
+                        name = name,
+                        description = description,
+                    )
+                )
+            }
+        }
     }
 
     private fun showExitDialog() {

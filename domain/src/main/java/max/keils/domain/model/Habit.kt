@@ -5,7 +5,8 @@ data class Habit(
     val name: String,
     val description: String,
     val frequency: Int,
-    val isCompletedToday: Boolean
+    val isCompletedToday: Boolean,
+    val reminders: List<Reminder> = listOf()
 ) {
     companion object {
         const val UNDEFINED_ID = -1

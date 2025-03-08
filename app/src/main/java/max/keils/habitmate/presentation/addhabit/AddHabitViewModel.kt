@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import max.keils.domain.model.Habit
+import max.keils.domain.model.Reminder
 import max.keils.domain.usecase.AddHabitUseCase
 import max.keils.domain.usecase.GetHabitByIdUseCase
 import max.keils.domain.usecase.UpdateHabitUseCase
@@ -25,25 +26,26 @@ class AddHabitViewModel @Inject constructor(
     val habitItem: LiveData<Habit>
         get() = _habitItem
 
-    fun addHabit(name: String, description: String) {
-        Habit(
-            name = name,
-            description = description,
-            frequency = 0,
-            isCompletedToday = false
-        ).also {
-            viewModelScope.launch {
-                addHabitUseCase(it)
-                finishWork()
-            }
+    private val _reminders = MutableLiveData<List<Reminder>>(emptyList())
+    val reminders: LiveData<List<Reminder>>
+        get() = _reminders
+
+    fun addReminder(reminder: Reminder) {
+        val currentList = _reminders.value.orEmpty()
+        val newList = currentList.toMutableList().apply { add(reminder) }
+        _reminders.value = newList
+    }
+    fun addHabit(newHabit: Habit) {
+        viewModelScope.launch {
+            addHabitUseCase(newHabit)
+            finishWork()
         }
     }
 
-    fun updateHabit(name: String, description: String) {
+    fun updateHabit(newHabit: Habit) {
         habitItem.value?.let {
             viewModelScope.launch {
-                val item = it.copy(name = name, description = description)
-                updateHabitUseCase(item)
+                updateHabitUseCase(newHabit)
                 finishWork()
             }
         }

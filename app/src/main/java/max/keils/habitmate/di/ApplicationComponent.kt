@@ -4,6 +4,7 @@ import dagger.Component
 import max.keils.habitmate.presentation.addhabit.AddHabitFragment
 import max.keils.habitmate.presentation.detailshabit.HabitDetailsFragment
 import max.keils.habitmate.presentation.habitlist.HabitListFragment
+import max.keils.habitmate.presentation.addhabit.ReminderBottomSheetDialogFragment
 import javax.inject.Singleton
 
 @Singleton
@@ -15,5 +16,7 @@ interface ApplicationComponent {
     fun inject(fragment: AddHabitFragment)
 
     fun inject(fragment: HabitDetailsFragment)
+
+    fun inject(fragment: ReminderBottomSheetDialogFragment)
 
 }

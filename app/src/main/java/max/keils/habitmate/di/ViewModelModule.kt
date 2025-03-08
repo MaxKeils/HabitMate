@@ -5,6 +5,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import max.keils.habitmate.presentation.addhabit.AddHabitViewModel
+import max.keils.habitmate.presentation.addhabit.ReminderBottomSheetDialogViewModel
 import max.keils.habitmate.presentation.detailshabit.HabitDetailsViewModel
 import max.keils.habitmate.presentation.habitlist.HabitListViewModel
 
@@ -24,5 +25,10 @@ interface ViewModelModule {
     @ViewModelKey(HabitDetailsViewModel::class)
     @Binds
     fun bindHabitDetailsViewModel(impl: HabitDetailsViewModel): ViewModel
+
+    @IntoMap
+    @ViewModelKey(ReminderBottomSheetDialogViewModel::class)
+    @Binds
+    fun bindReminderBottomSheetDialogViewModel(impl: ReminderBottomSheetDialogViewModel): ViewModel
 
 }
