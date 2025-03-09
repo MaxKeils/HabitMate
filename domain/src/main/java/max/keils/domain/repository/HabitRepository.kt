@@ -5,11 +5,9 @@ import max.keils.domain.model.Habit
 
 interface HabitRepository {
 
-    suspend fun addHabit(habit: Habit)
+    suspend fun saveHabit(habit: Habit)
 
     suspend fun deleteHabit(habitId: Int)
-
-    suspend fun updateHabit(newHabit: Habit)
 
     suspend fun getHabitById(habitId: Int): Habit?
 

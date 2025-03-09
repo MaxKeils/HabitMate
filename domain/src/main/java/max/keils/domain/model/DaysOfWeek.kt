@@ -10,8 +10,8 @@ enum class DaysOfWeek(val numberDayOfTheWeek: Int) {
     SUNDAY(7);
 
     companion object {
-        fun fromNumber(number: Int) = entries
-            .firstOrNull { it.numberDayOfTheWeek == number }
+        fun fromNumber(number: Int) = entries.find { it.numberDayOfTheWeek == number }
+            ?: throw IllegalArgumentException("Invalid day number: $number")
 
     }
 }

@@ -13,26 +13,22 @@ class HabitRepositoryImpl @Inject constructor() : HabitRepository {
 
     private val _habits = MutableStateFlow(emptyList<Habit>())
     private var counterId = 0
-
-    override suspend fun addHabit(habit: Habit) {
-        _habits.update { it + habit.copy(id = counterId++)}
+    override suspend fun saveHabit(habit: Habit) {
+        _habits.update { habits ->
+            if (habit.id == Habit.UNDEFINED_ID) {
+                habits + habit.copy(id = counterId++)
+            } else {
+                habits.map { existingHabit ->
+                    if (existingHabit.id == habit.id) habit else existingHabit
+                }
+            }
+        }
     }
 
     override suspend fun deleteHabit(habitId: Int) {
         _habits.update { habits ->
             habits.filter { habit ->
                 habit.id != habitId
-            }
-        }
-    }
-
-    override suspend fun updateHabit(newHabit: Habit) {
-        _habits.update { habits ->
-            habits.map { habit ->
-                if (habit.id == newHabit.id)
-                    newHabit
-                else
-                    habit
             }
         }
     }

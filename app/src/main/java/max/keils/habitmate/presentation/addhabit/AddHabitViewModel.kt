@@ -5,16 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import max.keils.domain.model.DaysOfWeek
 import max.keils.domain.model.Habit
 import max.keils.domain.model.Reminder
-import max.keils.domain.usecase.AddHabitUseCase
+import max.keils.domain.model.ReminderTime
 import max.keils.domain.usecase.GetHabitByIdUseCase
-import max.keils.domain.usecase.UpdateHabitUseCase
+import max.keils.domain.usecase.SaveHabitUseCase
 import javax.inject.Inject
 
 class AddHabitViewModel @Inject constructor(
-    private val addHabitUseCase: AddHabitUseCase,
-    private val updateHabitUseCase: UpdateHabitUseCase,
+    private val saveHabitUseCase: SaveHabitUseCase,
     private val getHabitByIdUseCase: GetHabitByIdUseCase,
 ) : ViewModel() {
 
@@ -30,24 +30,32 @@ class AddHabitViewModel @Inject constructor(
     val reminders: LiveData<List<Reminder>>
         get() = _reminders
 
-    fun addReminder(reminder: Reminder) {
-        val currentList = _reminders.value.orEmpty()
-        val newList = currentList.toMutableList().apply { add(reminder) }
-        _reminders.value = newList
-    }
-    fun addHabit(newHabit: Habit) {
-        viewModelScope.launch {
-            addHabitUseCase(newHabit)
-            finishWork()
-        }
+    fun addReminder(id: Int, day: DaysOfWeek, time: ReminderTime) {
+        _reminders.value = _reminders.value?.filter { it.id != id }?.plus(Reminder(id, day, time))
     }
 
-    fun updateHabit(newHabit: Habit) {
-        habitItem.value?.let {
-            viewModelScope.launch {
-                updateHabitUseCase(newHabit)
-                finishWork()
-            }
+    fun getReminderById(id: Int): Reminder? = reminders.value?.find {
+        it.id == id
+    }
+
+    fun saveHabit(name: String, description: String) {
+        viewModelScope.launch {
+            val reminders = _reminders.value ?: emptyList()
+
+            val habit = _habitItem.value?.copy(
+                name = name,
+                description = description,
+                reminders = reminders
+            ) ?: Habit(
+                name = name,
+                description = description,
+                reminders = reminders,
+                frequency = 1,
+                isCompletedToday = false
+            )
+
+            saveHabitUseCase(habit)
+            finishWork()
         }
     }
 
@@ -55,6 +63,7 @@ class AddHabitViewModel @Inject constructor(
         viewModelScope.launch {
             getHabitByIdUseCase(habitId)?.let {
                 _habitItem.value = it
+                _reminders.value = it.reminders
             } ?: throw RuntimeException("HabitId is null. Couldn't find a habit")
         }
     }

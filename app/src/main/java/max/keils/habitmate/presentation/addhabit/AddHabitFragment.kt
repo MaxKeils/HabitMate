@@ -2,7 +2,6 @@ package max.keils.habitmate.presentation.addhabit
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -85,20 +84,29 @@ class AddHabitFragment : Fragment() {
                     tiEtDescriptionHabit.setText(it.description)
                 }
             }
-            reminders.observe(viewLifecycleOwner) {
-                Log.d("ReminderListAdapter", "Observe: $it")
-                adapter.submitList(it)
-            }
+            reminders.observe(viewLifecycleOwner) { adapter.submitList(it) }
         }
     }
 
     private fun setupClickListeners() {
         with(binding) {
             toolBar.setNavigationOnClickListener { showExitDialog() }
+
             tvAddReminder.setOnClickListener {
-                ReminderBottomSheetDialogFragment()
-                    .show(childFragmentManager, ReminderBottomSheetDialogFragment.TAG)
+                childFragmentManager.findFragmentByTag(ReminderBottomSheetDialogFragment.TAG)
+                    ?: ReminderBottomSheetDialogFragment().show(
+                        childFragmentManager,
+                        ReminderBottomSheetDialogFragment.TAG
+                    )
             }
+        }
+
+        adapter.onEditHabitClickListener = {
+            childFragmentManager.findFragmentByTag(ReminderBottomSheetDialogFragment.TAG)
+                ?: ReminderBottomSheetDialogFragment.newInstance(it.id).show(
+                    childFragmentManager,
+                    ReminderBottomSheetDialogFragment.TAG
+                )
         }
 
         requireActivity().onBackPressedDispatcher.addCallback { showExitDialog() }
@@ -135,26 +143,7 @@ class AddHabitFragment : Fragment() {
         val name = binding.tiEtNameHabit.text.toString()
         val description = binding.tiEtDescriptionHabit.text.toString()
 
-        if (isScreenModeIsAdd()) {
-            Habit(
-                name = name,
-                description = description,
-                frequency = 1,
-                isCompletedToday = false
-            ).also {
-                viewModel.addHabit(it)
-            }
-
-        } else {
-            viewModel.habitItem.value?.let {
-                viewModel.updateHabit(
-                    it.copy(
-                        name = name,
-                        description = description,
-                    )
-                )
-            }
-        }
+        viewModel.saveHabit(name, description)
     }
 
     private fun showExitDialog() {
