@@ -69,6 +69,10 @@ class HabitDetailsFragment : Fragment() {
     private fun setupClickListeners() {
         binding.toolBar.setNavigationOnClickListener { finishWork() }
 
+        binding.btnChangeStatus.setOnClickListener {
+            viewModel.changeStatus()
+        }
+
         requireActivity().onBackPressedDispatcher.addCallback {
             finishWork()
         }
@@ -111,6 +115,10 @@ class HabitDetailsFragment : Fragment() {
             with(binding) {
                 toolBar.title = it.name
                 tvDescription.text = it.description
+
+                btnChangeStatus.text =
+                    if (!it.isCompletedToday) getString(R.string.mark_habit_as_done)
+                    else getString(R.string.remove_the_mark)
             }
         }
     }

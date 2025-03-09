@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="8dp"
     android:paddingBottom="8dp">
 
     <ImageView
@@ -14,10 +14,11 @@
         android:background="@drawable/bg_rounded"
         android:contentDescription="@string/content_description_habit_image"
         android:padding="8dp"
+        android:layout_margin="8dp"
         android:src="@drawable/ic_placeholder_icon_habit"
-        app:layout_constraintBottom_toBottomOf="@id/rb_state"
+        app:layout_constraintBottom_toBottomOf="@id/cb_state"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/rb_state" />
+        app:layout_constraintTop_toTopOf="@id/cb_state" />
 
     <TextView
         android:id="@+id/tv_habit_name"
@@ -30,7 +31,7 @@
         android:maxLines="1"
         android:paddingBottom="0dp"
         app:layout_constraintBottom_toTopOf="@id/tv_description"
-        app:layout_constraintEnd_toStartOf="@id/rb_state"
+        app:layout_constraintEnd_toStartOf="@id/cb_state"
         app:layout_constraintStart_toEndOf="@id/iv_icon"
         app:layout_constraintTop_toTopOf="@id/iv_icon"
         tools:text="@string/hint_habit_name" />
@@ -46,18 +47,20 @@
         android:maxLines="1"
         android:paddingTop="0dp"
         app:layout_constraintBottom_toBottomOf="@id/iv_icon"
-        app:layout_constraintEnd_toStartOf="@id/rb_state"
+        app:layout_constraintEnd_toStartOf="@id/cb_state"
         app:layout_constraintStart_toEndOf="@id/iv_icon"
         app:layout_constraintTop_toBottomOf="@id/tv_habit_name"
         tools:text="@string/hint_description" />
 
-    <com.google.android.material.radiobutton.MaterialRadioButton
-        android:id="@+id/rb_state"
+    <CheckBox
+        android:id="@+id/cb_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:button="@drawable/checkbox_selector"
+        app:layout_constraintBottom_toBottomOf="@id/tv_description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/tv_habit_name"
+        tools:checked="true" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

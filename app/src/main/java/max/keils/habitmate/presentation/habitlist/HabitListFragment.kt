@@ -67,6 +67,7 @@ class HabitListFragment : Fragment() {
                 HabitListFragmentDirections.actionHabitListFragmentToEditHabitFragment(habit.id)
                     .also { findNavController().navigate(it) }
             }
+            onHabitCheckBoxClickListener = { viewModel.changeState(it) }
         }
 
         with(binding) {

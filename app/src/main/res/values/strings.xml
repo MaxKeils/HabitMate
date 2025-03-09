@@ -41,6 +41,7 @@
     <string name="cancel">Cancel</string>
     <string name="hint_habit_name">Read a book</string>
     <string name="mark_habit_as_done">Mark as done</string>
+    <string name="remove_the_mark">Remove the mark</string>
     <string name="when_do_you_want_to_do_this">When do you want to do this ?</string>
     <string name="choose_a_time_for_notification">Choose a time for notification</string>
     <string name="selected_time">Selected time:</string>
