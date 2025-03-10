@@ -20,6 +20,7 @@ import max.keils.habitmate.HabitMateApp
 import max.keils.habitmate.R
 import max.keils.habitmate.databinding.FragmentHabitDetailsBinding
 import max.keils.habitmate.presentation.ViewModelFactory
+import max.keils.habitmate.presentation.addhabit.ReminderListAdapter
 import javax.inject.Inject
 
 class HabitDetailsFragment : Fragment() {
@@ -30,6 +31,9 @@ class HabitDetailsFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+
+    @Inject
+    lateinit var adapter: ReminderListAdapter
 
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[HabitDetailsViewModel::class.java]
@@ -55,10 +59,14 @@ class HabitDetailsFragment : Fragment() {
 
         viewModel.getHabitById(args.habitId)
 
+        binding.rcView.adapter = adapter
+
         setupNavigation()
         setupClickListeners()
         observeViewModel()
         setupMenu()
+
+
     }
 
 
@@ -115,6 +123,7 @@ class HabitDetailsFragment : Fragment() {
             with(binding) {
                 toolBar.title = it.name
                 tvDescription.text = it.description
+                adapter.submitList(it.reminders)
 
                 btnChangeStatus.text =
                     if (!it.isCompletedToday) getString(R.string.mark_habit_as_done)

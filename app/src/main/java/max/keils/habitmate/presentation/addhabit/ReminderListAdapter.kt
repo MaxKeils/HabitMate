@@ -1,6 +1,7 @@
 package max.keils.habitmate.presentation.addhabit
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import max.keils.domain.model.Reminder
@@ -19,6 +20,10 @@ class ReminderListAdapter @Inject constructor() :
 
     override fun onBindViewHolder(holder: ReminderViewHolder, position: Int) {
         val item = getItem(position)
+
+
+       if (onEditHabitClickListener == null)
+           holder.binding.ivEdit.visibility = View.GONE
 
         holder.binding.ivEdit.setOnClickListener {
             onEditHabitClickListener?.invoke(item)
