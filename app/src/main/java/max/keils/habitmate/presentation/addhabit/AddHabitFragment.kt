@@ -19,6 +19,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import max.keils.domain.model.Habit
 import max.keils.habitmate.HabitMateApp
@@ -73,6 +75,27 @@ class AddHabitFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.rcView.adapter = adapter
+
+        setupSwipeListener(binding.rcView)
+    }
+
+    private fun setupSwipeListener(recyclerView: RecyclerView) {
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                adapter.currentList[viewHolder.adapterPosition].let {
+                    viewModel.removeReminder(it.id)
+                }
+            }
+
+        }).attachToRecyclerView(recyclerView)
     }
 
     private fun observeViewModel() {

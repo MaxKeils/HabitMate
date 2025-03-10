@@ -34,9 +34,11 @@ class AddHabitViewModel @Inject constructor(
         _reminders.value = _reminders.value?.filter { it.id != id }?.plus(Reminder(id, day, time))
     }
 
-    fun getReminderById(id: Int): Reminder? = reminders.value?.find {
-        it.id == id
+    fun removeReminder(id: Int) {
+        _reminders.value = _reminders.value?.filter { it.id != id }
     }
+
+    fun getReminderById(id: Int): Reminder? = reminders.value?.find { it.id == id }
 
     fun saveHabit(name: String, description: String) {
         viewModelScope.launch {

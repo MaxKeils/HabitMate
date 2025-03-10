@@ -15,6 +15,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import max.keils.habitmate.HabitMateApp
 import max.keils.habitmate.R
@@ -114,5 +116,25 @@ class HabitListFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.recyclerView.adapter = adapter
+
+        setupSwipeListener(binding.recyclerView)
+    }
+
+    private fun setupSwipeListener(recyclerView: RecyclerView) {
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                adapter.currentList[viewHolder.adapterPosition].let {
+                    viewModel.deleteHabit(it.id)
+                }
+            }
+        }).attachToRecyclerView(recyclerView)
     }
 }
